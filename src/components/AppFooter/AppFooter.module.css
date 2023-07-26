@@ -1,0 +1,14 @@
+.appfooter__container{
+    background-color: #f3fde8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:5px;
+    margin-top:10px;
+}
+
+.appfooter__leftside{
+display: flex;
+align-items: center;
+gap: 5px;
+}

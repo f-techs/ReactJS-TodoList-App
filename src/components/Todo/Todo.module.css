@@ -1,0 +1,19 @@
+.todo__container{
+ width: 600px;
+ margin: 0 auto;
+ display: flex;
+ justify-content: start;
+ border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+ height:40px;
+ align-items: center;
+}
+
+.todo__container input, p {
+    font-size: 20px;
+    color:grey;
+}
+
+.todo__container input{
+    margin-right: 10px;
+}
+
