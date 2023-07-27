@@ -3,12 +3,44 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:5px;
     margin-top:10px;
+    padding: 10px;
+    height: 60px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .appfooter__leftside{
 display: flex;
 align-items: center;
-gap: 5px;
+gap: 15px;
+color: rgba(0,0,0,0.5)
 }
+
+.divider{
+    width: 1px;
+    height: 25px;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.appfooter__leftside__buttons{
+    display: flex;
+    gap:10px;
+}
+.appfooter__rightside__buttons{
+    display: flex;
+    gap:10px;
+}
+.appfooter__rightside__buttons button{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding:10px;
+    font-size: 18px;
+    background: transparent;
+    border: none;
+}
+
+
+.appfooter__rightside__buttons button:focus{
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 5px;
+    }
