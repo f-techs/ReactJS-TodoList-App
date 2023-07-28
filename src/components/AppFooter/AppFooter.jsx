@@ -15,7 +15,7 @@ function AppFooter(props){
             </div>
             <div className={styles.divider}></div>
             <div className={styles.appfooter__left__side__items}>
-                <p>items left</p>
+                <p>{props.activeItems} items left</p>
             </div>
           </div>
           <div className={styles.appfooter__rightside__buttons}>
