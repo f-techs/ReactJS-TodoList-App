@@ -40,7 +40,7 @@ const ACTIONS = {
 const reducerFn = (state, action) => {
   if (action.type === ACTIONS.add) {
     const newTodo = {
-      itemId: state.items.length + 1 - 1,
+      itemId: state.items.length,
       item: action.payload,
       completed: false,
       active: true,
@@ -66,17 +66,24 @@ const reducerFn = (state, action) => {
   }
   if (action.type === ACTIONS.check) {
     //update const is possible since we are not reassigning
-    const UpdatedTodoItemsItem = [...state.items]
-    UpdatedTodoItemsItem[action.payload].completed=true
-    UpdatedTodoItemsItem[action.payload].active=false
+    const updatedItems = state.items.map((item, index) => {
+      if (item.itemId === action.payload) {
+        return {
+          ...item,
+          completed: true,
+          active: false,
+        };
+      }
+      return item;
+    });
 
      //refilter to get only active items
-      const filteredData = state.items.filter((item) => {
+      const filteredData = updatedItems.filter((item) => {
       return item.active === true;
     });
     return {
       ...state,
-      items: UpdatedTodoItemsItem,
+      items: updatedItems,
       filteredData: filteredData,
       filteredStatus: true,
     };
@@ -108,8 +115,6 @@ function App() {
 
   let listOfItems;
 
-  console.log(todoState.items);
-
   const onAddItemHandler = () => {
     if (inputRef.current.value === "") {
       setErrorState({
@@ -134,7 +139,6 @@ function App() {
       return;
     }
     dispatchTodo({ type: ACTIONS.search, payload: inputRef.current.value });
-    console.log(todoState);
   };
 
   const onCloseModalHandler = () => {
@@ -144,6 +148,8 @@ function App() {
   const completeTodoHandler = (ITEMID) => {
     dispatchTodo({ type: ACTIONS.check, payload: ITEMID });
     console.log(ITEMID);
+    console.log(todoState.filteredData)
+    console.log(todoState.items)
   };
 
   const onFilterActiveItemsHandler = ()=>{
@@ -166,14 +172,14 @@ function App() {
           key={index}
           todo={item.item}
           complete={item.completed}
-          onCompleteHandler={() => completeTodoHandler(index)}
+          onCompleteHandler={() => completeTodoHandler(item.itemId)}
         />
       );
     });
   } else {
     listOfItems = todoState.items
       .filter((item) => {
-        return item.active === true;
+        return item.completed === false;
       })
       .map((item, index) => {
         return (
@@ -181,7 +187,7 @@ function App() {
             key={index}
             todo={item.item}
             complete={item.completed}
-            onCompleteHandler={() => completeTodoHandler(index)}
+            onCompleteHandler={() => completeTodoHandler(item.itemId)}
           />
         );
       });
