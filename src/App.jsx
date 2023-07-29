@@ -77,8 +77,8 @@ const reducerFn = (state, action) => {
       return item;
     });
 
-     //refilter to get only active items
-      const filteredData = updatedItems.filter((item) => {
+    //refilter to get only active items
+    const filteredData = updatedItems.filter((item) => {
       return item.active === true;
     });
     return {
@@ -88,22 +88,40 @@ const reducerFn = (state, action) => {
       filteredStatus: true,
     };
   }
-  if(action.type === ACTIONS.active){
-    const filteredData = state.items.filter((item)=>{
-        return item.active === true
-    })
-    return {...state, items:[...state.items], filteredData:filteredData, filteredStatus:true}
+  if (action.type === ACTIONS.active) {
+    const filteredData = state.items.filter((item) => {
+      return item.active === true;
+    });
+    return {
+      ...state,
+      items: [...state.items],
+      filteredData: filteredData,
+      filteredStatus: true,
+      filteredText: "Active Items",
+    };
   }
 
-  if(action.type === ACTIONS.completed){
-    const filteredData = state.items.filter((item)=>{
-      return item.completed === true
-  })
-  return {...state, items:[...state.items], filteredData:filteredData, filteredStatus:true}
+  if (action.type === ACTIONS.completed) {
+    const filteredData = state.items.filter((item) => {
+      return item.completed === true;
+    });
+    return {
+      ...state,
+      items: [...state.items],
+      filteredData: filteredData,
+      filteredStatus: true,
+      filteredText: "Items Completed",
+    };
   }
 
-  if(action.type === ACTIONS.all){
-    return {...state, items:[...state.items], filteredData:[...state.items], filteredStatus:true}
+  if (action.type === ACTIONS.all) {
+    return {
+      ...state,
+      items: [...state.items],
+      filteredData: [...state.items],
+      filteredStatus: true,
+      filteredText: "Total Items",
+    };
   }
   return state;
 };
@@ -148,21 +166,21 @@ function App() {
   const completeTodoHandler = (ITEMID) => {
     dispatchTodo({ type: ACTIONS.check, payload: ITEMID });
     console.log(ITEMID);
-    console.log(todoState.filteredData)
-    console.log(todoState.items)
+    console.log(todoState.filteredData);
+    console.log(todoState.items);
   };
 
-  const onFilterActiveItemsHandler = ()=>{
-    dispatchTodo({type:ACTIONS.active})
-  }
+  const onFilterActiveItemsHandler = () => {
+    dispatchTodo({ type: ACTIONS.active });
+  };
 
-  const onAllItemsHandler = () =>{
-    dispatchTodo({type:ACTIONS.all})
-  }
-  
-  const onCompletedItemsHandler = ()=>{
-    dispatchTodo({type:ACTIONS.completed})
-  }
+  const onAllItemsHandler = () => {
+    dispatchTodo({ type: ACTIONS.all });
+  };
+
+  const onCompletedItemsHandler = () => {
+    dispatchTodo({ type: ACTIONS.completed });
+  };
 
   //list of items
   if (todoState.filteredStatus) {
