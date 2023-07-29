@@ -7,11 +7,11 @@ This small react app does the following,
 2. checking todo items to mark them complete
 3. showing completed, active and all todos
 4. searching a todo
-Techniques, hooks and methods used:
-1. I applied conditional rendering by rendering different states of my data
-2. Used props
-3. Used css module styling
-4. Used useReducer Hook
-5. Used useRef and forwardRef
-6. Used React Portal for proper semantic arrangement of HTML elements
+   # Techniques, hooks and methods used:
+i. I applied conditional rendering by rendering different states of my data
+ii. Used props
+iii. Used css module styling
+iv.  Used useReducer Hook
+v.  Used useRef and forwardRef
+vi. Used React Portal for proper semantic arrangement of HTML elements
    
