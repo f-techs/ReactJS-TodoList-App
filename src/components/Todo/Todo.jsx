@@ -5,7 +5,7 @@ function Todo(props){
     return (
         <>
         <div className={styles.todo__container}>
-            <input type="checkbox"/>
+            <input type="checkbox" checked={props.complete} onChange={props.onCompleteHandler}/>
             <p>{props.todo}</p>
         </div>
         </>
